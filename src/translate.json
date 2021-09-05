@@ -1,0 +1,22 @@
+{
+  "portuguese": {
+    "name": "Nome",
+    "wallet": "Carteira",
+    "market": "Mercado",
+    "dashboard": "Dashboard",
+    "configurations": "Configurações",
+    "others": {
+      "logout": "Sair do sistema"
+    }
+  },
+  "english": {
+    "name": "Name",
+    "wallet": "Wallet",
+    "market": "Market",
+    "dashboard": "Dashboard",
+    "configurations": "Configurations",
+    "others": {
+      "logout": "Logout"
+    }
+  }
+}

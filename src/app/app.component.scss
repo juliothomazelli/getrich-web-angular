@@ -1,0 +1,14 @@
+@import "../global.scss";
+
+.container{
+  height: 100%;
+}
+
+.side-nav{
+  width: 20vw;
+  height: 100vw;
+}
+
+.item-hover:hover{
+  background-color: rgb(148, 148, 148);
+}

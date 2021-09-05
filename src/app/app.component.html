@@ -1,0 +1,50 @@
+<mat-drawer-container class="container" hasBackdrop="true">
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <button mat-icon-button (click)="logout()" class="absolute-right" matTooltip="{{translate.name}}">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <mat-drawer #drawer mode="over" class="side-nav">
+    <mat-list>
+      <mat-expansion-panel expanded="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon mat-list-icon>person</mat-icon>
+            Julio Thomazelli
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list>
+          <mat-list-item>
+            <mat-icon>attach_money</mat-icon>&nbsp;BRL - R$ 5000,00
+          </mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+
+      <mat-divider></mat-divider>
+      <mat-list-item class="cursor-pointer item-hover" (click)="dashboard(); drawer.close()">
+        <mat-icon mat-list-icon>bar_chart</mat-icon>
+        {{translate.dashboard}}
+      </mat-list-item>
+      <mat-list-item class="cursor-pointer item-hover" (click)="market(); drawer.close()">
+        <mat-icon mat-list-icon>shopping_cart</mat-icon>
+        {{translate.market}}
+      </mat-list-item>
+      <mat-list-item class="cursor-pointer item-hover" (click)="wallet(); drawer.close()">
+        <mat-icon mat-list-icon>account_balance_wallet</mat-icon>
+        {{translate.wallet}}
+      </mat-list-item>
+      <mat-list-item class="cursor-pointer item-hover" (click)="configuration(); drawer.close()">
+        <mat-icon mat-list-icon>settings</mat-icon>
+        {{translate.configurations}}
+      </mat-list-item>
+     </mat-list>
+  </mat-drawer>
+
+  <router-outlet></router-outlet>  
+  
+</mat-drawer-container>
