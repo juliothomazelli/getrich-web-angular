@@ -27,6 +27,10 @@ export class AppComponent extends BaseComponent{
     this.router.navigateByUrl("/wallet");
   }
 
+  report(){
+    this.router.navigateByUrl("/report");
+  }
+
   configuration(){
     this.router.navigateByUrl("/configuration");
   }

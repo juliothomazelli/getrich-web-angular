@@ -4,6 +4,7 @@
     "wallet": "Carteira",
     "market": "Mercado",
     "dashboard": "Dashboard",
+    "reports": "Relatórios",
     "configurations": "Configurações",
     "others": {
       "logout": "Sair do sistema"
@@ -14,6 +15,7 @@
     "wallet": "Wallet",
     "market": "Market",
     "dashboard": "Dashboard",
+    "reports": "Reports",
     "configurations": "Configurations",
     "others": {
       "logout": "Logout"
