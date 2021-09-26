@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatExpansionPanel } from '@angular/material/expansion';
 import { Router } from '@angular/router';
 import { BaseComponent } from './base/base.component';
+import { WebSocketService } from './websocket/websocket.service';
 
 @Component({
   selector: 'app-root',
@@ -11,12 +12,13 @@ import { BaseComponent } from './base/base.component';
 })
 export class AppComponent extends BaseComponent{
 
-  constructor(private router : Router){
+  constructor(private router : Router, private websocket: WebSocketService){
     super();
   }
  
   dashboard(){
     this.router.navigateByUrl("/dashboard");
+    this.websocket.connect();
   }
 
   market(){

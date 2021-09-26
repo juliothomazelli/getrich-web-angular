@@ -28,6 +28,12 @@ import { MarketComponent } from './market/market.component';
 import { WalletComponent } from './wallet/wallet.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
 
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { HttpUtils } from './utils/HttpUtils';
+import { HttpClientModule } from '@angular/common/http';
+import { WebSocketService } from './websocket/websocket.service';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +46,7 @@ import { ConfigurationComponent } from './configuration/configuration.component'
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatSliderModule,
     MatSidenavModule,
@@ -57,9 +64,13 @@ import { ConfigurationComponent } from './configuration/configuration.component'
     MatTooltipModule,
     MatGridListModule,
     MatExpansionModule,
+    NgxChartsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    HttpUtils,
+    WebSocketService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
