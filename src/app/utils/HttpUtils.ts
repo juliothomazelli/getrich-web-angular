@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ObjectUtils } from "./ObjectUtils";
+import binance_api from "../../binance_api.json";
 
 export enum MethodType{
   GET    = "GET",
@@ -12,16 +13,24 @@ export enum MethodType{
 
 @Injectable()
 export class HttpUtils {
+  private isTesting : boolean = true;
+
   private TIMEOUT = 15000;
 
   constructor(private http: HttpClient){}
 
   public getBaseUrl() : string{
-    return 'http://localhost:3000/';
+    if (this.isTesting)
+      return "http://localhost:3000/";
+
+    return "AQUI VAI O LINK DE PRODUCAO";
   }
 
-  public getWssBase() : string {
-    return 'ws://localhost:8080/'
+  public getWssBaseUrl() : string {
+    if (this.isTesting)
+      return "ws://localhost:8080/";
+
+    return "AQUI VAI O LINK DE PRODUCAO";
   }
 
   public publicRequest(method : MethodType, url : string){

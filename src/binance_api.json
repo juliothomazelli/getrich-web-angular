@@ -1,0 +1,83 @@
+{
+	"test": {
+		"base_url": "https://testnet.binance.vision",
+		"wss": 			"wss://testnet.binance.vision/ws",
+		"stream": 	"wss://testnet.binance.vision/stream"
+	},
+	"prd": {
+		"base_url": "https://api.binance.com",
+		"wss": 			"wss://stream.binance.com:9443/ws",
+		"stream": 	"wss://stream.binance.com:9443/stream"
+	},
+	"order_status": {
+		"new": 							"NEW",
+		"partially_filled": "PARTIALLY_FILLED",
+		"filled": 					"FILLED",
+		"canceled": 				"CANCELED",
+		"pending_cancel": 	"PENDING_CANCEL",
+		"rejected": 				"REJECTED",
+		"expired": 					"EXPIRED"
+	},
+	"order_types": {
+		"limit": 						 "LIMIT",
+		"limit_marker": 		 "LIMIT_MARKER",
+		"market": 					 "MARKET",
+		"stop_loss": 				 "STOP_LOSS",
+		"stop_loss_limit":   "STOP_LOSS_LIMIT",
+		"take_profit": 			 "TAKE_PROFIT",
+		"take_profit_limit": "TAKE_PROFIT_LIMIT"
+	},
+	"side": {
+		"buy": 	"BUY",
+		"sell": "SELL"
+	},
+	"rate_limiters": {
+		"request_weight": "REQUEST_WEIGHT",
+		"orders": 				"ORDERS",
+		"raw_requests": 	"RAW_REQUESTS"
+	},
+	"raw_limit_intervals": {
+		"second": "SECOND",
+		"minute": "MINUTE",
+		"day": 		"DAY"
+	},
+	"websockets_endpoints":{
+		"kline_1m":   "kline_1m",
+		"kline_3m":   "kline_3m",
+		"kline_m":    "kline_5m",
+		"kline_15m":  "kline_15m",
+		"kline_30m":  "kline_30m",
+		"kline_1h":   "kline_1h",
+		"kline_2h":   "kline_2h",
+		"kline_4h":   "kline_4h",
+		"kline_6h":   "kline_6h",
+		"kline_8h":   "kline_8h",
+		"kline_12h":  "kline_12h",
+		"kline_1d":   "kline_1d",
+		"kline_3d":   "kline_3d",
+		"kline_1w":   "kline_1w",
+		"kline_1M":   "kline_1M",
+		"miniTicker": "miniTicker"
+	},
+	"v1": {
+		"capital_config_getall": 			"/sapi/v1/capital/config/getall",
+		"account_status": 						"/sapi/v1/account/status",
+		"account_api_trading_status": "/sapi/v1/account/apiTradingStatus",
+		"trade_fee": 									"/sapi/v1/asset/tradeFee"
+	},
+	"v3": {
+		"order": 								 "/api/v3/order",
+		"order_book": 					 "/api/v3/depth",
+		"order_list": 					 "/api/v3/allOrderList",
+		"orders": 							 "/api/v3/allOrders",
+		"account_info": 				 "/api/v3/account",
+		"account_trade": 				 "/api/v3/myTrades",
+		"trades": 							 "/api/v3/trades",
+		"trade_historical": 		 "/api/v3/historicalTrades",
+		"market_price_average":  "/api/v3/avgPrice",
+		"market_price": 				 "/api/v3/ticker/price",
+		"best_market_price_qty": "/api/v3/ticker/bookTicker",
+		"price_change_24hr": 		 "/api/v3/ticker/24hr",
+		"candlesticket_data": 	 "/api/v3/klines"
+	}
+}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import translate from "../../translate.json";
+import { LanguageTypes } from '../utils/EnumUtils';
 
 @Component({
   selector: 'app-base',
@@ -19,15 +20,15 @@ export class BaseComponent implements OnInit {
   }
 
   setTranslate(){
-    if (environment.language == "portuguese"){
-      return translate.portuguese;
+    if (environment.language == LanguageTypes.PT){
+      return translate.PT;
     }
 
-    if (environment.language == "english"){
-      return translate.english;
+    if (environment.language == LanguageTypes.EN){
+      return translate.EN;
     }
 
-    return translate.portuguese;
+    return translate.PT;
   }
 
 }

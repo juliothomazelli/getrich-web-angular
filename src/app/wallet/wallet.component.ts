@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BaseComponent } from '../base/base.component';
 import { HttpUtils, MethodType } from '../utils/HttpUtils';
 import { WebSocketService } from '../websocket/websocket.service';
 
@@ -7,11 +8,19 @@ import { WebSocketService } from '../websocket/websocket.service';
   templateUrl: './wallet.component.html',
   styleUrls: ['./wallet.component.scss']
 })
-export class WalletComponent implements OnInit {
+export class WalletComponent extends BaseComponent implements OnInit {
+  public totalAmount : number = 0;
 
-  constructor(private httpUtils : HttpUtils, private webSocketService : WebSocketService) { }
+  constructor(private httpUtils : HttpUtils, private webSocketService : WebSocketService) {
+    super();
+   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    
+  }
+
+  registerOnWebsocket(){
+    
   }
 
   teste(){

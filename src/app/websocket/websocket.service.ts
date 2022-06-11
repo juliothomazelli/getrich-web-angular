@@ -14,7 +14,7 @@ export class WebSocketService {
   constructor(private httpUtils : HttpUtils){}
 
   public connect(){
-    this.webSocket = new WebSocket(this.httpUtils.getWssBase());
+    this.webSocket = new WebSocket(this.httpUtils.getWssBaseUrl());
 
     this.webSocket.onopen    = (evt: Event) => { this.onOpen(evt); };
     this.webSocket.onclose   = (evt: Event) => { this.onClose(evt); };
