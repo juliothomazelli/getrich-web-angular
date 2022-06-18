@@ -32,6 +32,14 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { HttpUtils } from './utils/HttpUtils';
 import { HttpClientModule } from '@angular/common/http';
 import { WebSocketService } from './websocket/websocket.service';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
+import { LineChartComponent } from './charts/line-chart/line-chart.component';
+import { CandleChartComponent } from './charts/candle-chart/candle-chart.component';
+import { BarChartComponent } from './charts/bar-chart/bar-chart.component';
+import { AreaChartComponent } from './charts/area-chart/area-chart.component';
+import { ColumnChartComponent } from './charts/column-chart/column-chart.component';
+import { HeatmapChartComponent } from './heatmap-chart/heatmap-chart.component';
 
 
 @NgModule({
@@ -41,7 +49,14 @@ import { WebSocketService } from './websocket/websocket.service';
     BaseComponent,
     MarketComponent,
     WalletComponent,
-    ConfigurationComponent
+    ConfigurationComponent,
+    PieChartComponent,
+    LineChartComponent,
+    CandleChartComponent,
+    BarChartComponent,
+    AreaChartComponent,
+    ColumnChartComponent,
+    HeatmapChartComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +80,8 @@ import { WebSocketService } from './websocket/websocket.service';
     MatGridListModule,
     MatExpansionModule,
     NgxChartsModule,
-    FormsModule
+    FormsModule,
+    NgApexchartsModule
   ],
   providers: [
     HttpUtils,

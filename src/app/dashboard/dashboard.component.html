@@ -1,27 +1,50 @@
-<mat-grid-list cols="1" rowHeight="30rem">
+<mat-grid-list cols="3" rowHeight="3:2">
+
   <mat-grid-tile>
-    <mat-card class="exchange-card">
-      <mat-card-header>
-        <mat-card-title>BTC / BRL</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <ngx-charts-line-chart
-      [view]="view"
-      [scheme]="colorScheme"
-      [results]="multi"
-      [gradient]="gradient"
-      [xAxis]="showXAxis"
-      [yAxis]="showYAxis"
-      [legend]="showLegend"
-      [showXAxisLabel]="showXAxisLabel"
-      [showYAxisLabel]="showYAxisLabel"
-      [xAxisLabel]="xAxisLabel"
-      [yAxisLabel]="yAxisLabel"
-      [autoScale]="autoScale"
-      [animations]="false"
-      (select)="onSelect($event)">
-    </ngx-charts-line-chart>
-      </mat-card-content>
+    <mat-card style="width: 100%; height: auto; background-color: white; margin: 1%; margin-bottom: auto;">
+      <app-candle-chart [data]=candleChart></app-candle-chart>
     </mat-card>
   </mat-grid-tile>
+
+  <mat-grid-tile>
+    <mat-card style="width: 100%; height: auto; background-color: white; margin: 1%; margin-bottom: auto;">
+      <app-pie-chart [data]=pieChart></app-pie-chart>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile>
+    <mat-card style="width: 100%; height: auto; background-color: white; margin: 1%; margin-bottom: auto;">
+      <app-line-chart [data]=lineChart></app-line-chart>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile>
+    <mat-card style="width: 100%; height: auto; background-color: white; margin: 1%; margin-bottom: auto;">
+      <app-bar-chart [data]=barChart></app-bar-chart>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile>
+    <mat-card style="width: 100%; height: auto; background-color: white; margin: 1%; margin-bottom: auto;">
+      <app-area-chart [data]=areaChart></app-area-chart>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile>
+    <mat-card style="width: 100%; height: auto; background-color: white; margin: 1%; margin-bottom: auto;">
+      <app-column-chart [data]=columnChart></app-column-chart>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile>
+    <mat-card style="width: 100%; height: auto; background-color: white; margin: 1%; margin-bottom: auto;">
+      <app-heatmap-chart [data]=heatmapChart></app-heatmap-chart>
+    </mat-card>
+  </mat-grid-tile>
+
+  <!-- <mat-grid-tile>
+    <button mat-flat-button color="accent">Accept</button>
+    <button mat-flat-button color="warn">Decline</button>
+    <button mat-flat-button color="primary">Enter</button>
+  </mat-grid-tile> -->
 </mat-grid-list>

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ConfigurationComponent } from './configuration/configuration.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MarketComponent } from './market/market.component';
+import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
 import { ReportComponent } from './report/report.component';
 import { WalletComponent } from './wallet/wallet.component';
 
@@ -13,7 +14,7 @@ const childRoutes = [
   },
   {
     path: 'market',
-    component: MarketComponent,
+    component: MarketComponent
   },
   {
     path: 'wallet',
