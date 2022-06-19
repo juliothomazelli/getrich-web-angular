@@ -20,7 +20,7 @@ export class AppComponent extends BaseComponent{
   constructor(private router : Router, private websocket: WebSocketService){
     super();
 
-    // this.websocket.connect();
+    this.websocket.connect();
   }
  
   dashboard(){

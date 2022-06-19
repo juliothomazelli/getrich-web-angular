@@ -1,10 +1,13 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { BaseComponent } from '../base/base.component';
+import { EventEmitterService } from '../eventemitter/eventemitter.service';
+import { WebSocketService } from '../websocket/websocket.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class DashboardComponent extends BaseComponent implements OnInit {
@@ -16,7 +19,7 @@ export class DashboardComponent extends BaseComponent implements OnInit {
   public columnChart  : any = {};
   public heatmapChart : any = {};
 
-  constructor(){
+  constructor(private websocket : WebSocketService, private cdr: ChangeDetectorRef){
     super();
 
     this.pieChart.series        = [55, 55, 13, 43, 22, 88, 99];
@@ -27,7 +30,7 @@ export class DashboardComponent extends BaseComponent implements OnInit {
     this.pieChart.gradient      = true;
     this.pieChart.title         = "Moedas que estão valendo a pena";
 
-    this.candleChart.series     = this.getCandleChartSeries();
+    this.candleChart.series = this.getCandleChartSeries()
     this.candleChart.width      = "100%";
     this.candleChart.height     = 302;
     this.candleChart.titleText  = "BTC | BRL";
@@ -681,6 +684,34 @@ export class DashboardComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
-  } 
+    // this.websocket.send({ WebsocketType: "MARKET_REAL_TIME" });
+
+    let time = 1538884800000;
+    setInterval(() => {
+      time = time + 1800000;
+
+      let candle = {
+        x: new Date(time),
+        y: [6608.98, 6606, 6604.07, 6206]
+      }
+
+      this.candleChart.series.push(candle);
+      this.candleChart.series = [...this.candleChart.series];
+    }, 5000);
+    // EventEmitterService.get("MARKET_REAL_TIME").subscribe((data) => {
+      
+    //   data = JSON.parse(data);
+
+    //   let candleData = {
+    //     x: new Date(data.startTime),
+    //     y: [parseInt(data.open), parseInt(data.high), parseInt(data.low), parseInt(data.close)]
+    //   };
+
+    //   this.candleChart.series.push(candleData);
+    //   this.candleChart.series = [...this.candleChart.series];
+
+    //   this.cdr.detectChanges();
+    // });
+  }
+
 }

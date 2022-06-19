@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { EventEmitterService } from "../eventemitter/eventemitter.service";
 import { HttpUtils } from "../utils/HttpUtils";
 import { ObjectUtils } from "../utils/ObjectUtils";
 
@@ -35,18 +36,19 @@ export class WebSocketService {
   }
 
   private onOpen(evt : any) {
-    this.webSocket.send(JSON.stringify('message'));
+    //this.webSocket.send(JSON.stringify('message'));
   }
 
   private onClose(evt : any) {
     console.log(evt);
   }
 
-  private onMessage(message : any) {
+  public onMessage(message : any) {
     if (ObjectUtils.isNullOrUndefined(message) || ObjectUtils.isNullOrUndefined(message.data)){
       return;
     }
 
+    EventEmitterService.get('MARKET_REAL_TIME').emit(message.data);
   }
 
   private onError(evt : any) {
