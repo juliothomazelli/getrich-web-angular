@@ -1,8 +1,8 @@
-<mat-grid-list cols="1" rowHeight="3:2">
+<mat-grid-list cols="1" rowHeight="8:2">
 
   <mat-grid-tile>
     <mat-card style="width: 100%; height: auto; background-color: white; margin: 1%; margin-bottom: auto;">
-      <app-candle-chart [data]=candleChart></app-candle-chart>
+      <app-candle-chart id="chart" [data]=candleChart></app-candle-chart>
     </mat-card>
   </mat-grid-tile>
 
@@ -42,9 +42,9 @@
     </mat-card>
   </mat-grid-tile> -->
 
-  <!-- <mat-grid-tile>
-    <button mat-flat-button color="accent">Accept</button>
+   <mat-grid-tile>
+    <button mat-flat-button color="accent" (click)="addData()">Accept</button>
     <button mat-flat-button color="warn">Decline</button>
     <button mat-flat-button color="primary">Enter</button>
-  </mat-grid-tile> -->
+  </mat-grid-tile>
 </mat-grid-list>

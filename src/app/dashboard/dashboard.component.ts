@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { BaseComponent } from '../base/base.component';
 import { EventEmitterService } from '../eventemitter/eventemitter.service';
 import { WebSocketService } from '../websocket/websocket.service';
@@ -19,7 +19,10 @@ export class DashboardComponent extends BaseComponent implements OnInit {
   public columnChart  : any = {};
   public heatmapChart : any = {};
 
-  constructor(private websocket : WebSocketService, private cdr: ChangeDetectorRef){
+  public time = 1538884800000;
+  public count = 0;
+
+  constructor(private websocket : WebSocketService){
     super();
 
     this.pieChart.series        = [55, 55, 13, 43, 22, 88, 99];
@@ -683,21 +686,56 @@ export class DashboardComponent extends BaseComponent implements OnInit {
     
   }
 
-  ngOnInit(): void {
+  addData(){
+    this.count = this.count + 10;
+    this.time = this.time + 1800000;
+
+    let candle = {
+      x: new Date(this.time),
+      y: [6608 + this.count, 6606 + this.count, 6604 + this.count, 6606 + this.count]
+    }
+
+    this.candleChart.series.push(candle);
+  }
+
+  async ngOnInit() {
     // this.websocket.send({ WebsocketType: "MARKET_REAL_TIME" });
 
-    let time = 1538884800000;
-    setInterval(() => {
-      time = time + 1800000;
+    // let time = 1538884800000;
 
-      let candle = {
-        x: new Date(time),
-        y: [6608.98, 6606, 6604.07, 6206]
-      }
+    // // await this.setTeste()
 
-      this.candleChart.series.push(candle);
-      this.candleChart.series = [...this.candleChart.series];
-    }, 5000);
+    // for (let i = 0; i < 500; i++) {
+    //   time = time + 1800000;
+
+    //   let candle = {
+    //     x: new Date(time),
+    //     y: [6608 + i, 6606 + i, 6604 + i, 6606 + i]
+    //   }
+
+    //   this.candleChart.series.push(candle);
+    //   this.candleChart.series = [...this.candleChart.series];
+      
+    // }
+
+    // setInterval(() => {
+    //   time = time + 1800000;
+
+    //   let candle = {
+    //     x: new Date(time),
+    //     y: [6608.98, 6606, 6604.07, 6606]
+    //   }
+
+    //   this.candleChart.series.push(candle);
+    //   this.candleChart.series = [...this.candleChart.series];
+
+    // }, 1000);
+
+
+
+
+
+
     // EventEmitterService.get("MARKET_REAL_TIME").subscribe((data) => {
       
     //   data = JSON.parse(data);
