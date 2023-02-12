@@ -29,10 +29,7 @@ export class CandleChartComponent implements OnInit {
       chart: {
         type: "candlestick",
         width: this.data.width,
-        height: this.data.height,
-        zoom: {
-          enabled: false
-        }
+        height: this.data.height
       },
       title: {
         text: this.data.titleText,
@@ -58,8 +55,7 @@ export class CandleChartComponent implements OnInit {
       }
 
       this.chartOptions.series[0].data.push(candle);
-      this.chart.series = []
-      this.chart.appendSeries(this.chartOptions.series)
+      this.chart.updateSeries(this.chartOptions.series);
       
     }, 5000);
     

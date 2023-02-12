@@ -40,7 +40,7 @@ export class WebSocketService {
   }
 
   private onClose(evt : any) {
-    console.log(evt);
+    // console.log(evt);
   }
 
   public onMessage(message : any) {

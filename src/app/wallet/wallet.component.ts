@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { BaseComponent } from '../base/base.component';
 import { HttpUtils, MethodType } from '../utils/HttpUtils';
 import { WebSocketService } from '../websocket/websocket.service';
+import {MatDialog} from '@angular/material/dialog';
+import { WalletOverviewComponent } from '../wallet-overview/wallet-overview.component';
 
 @Component({
   selector: 'app-wallet',
@@ -9,31 +11,30 @@ import { WebSocketService } from '../websocket/websocket.service';
   styleUrls: ['./wallet.component.scss']
 })
 export class WalletComponent extends BaseComponent implements OnInit {
-  public totalAmount : number = 0;
+  public balanceInfo : any = { btcBalance: 0.00000000, balances: [] };
 
-  constructor(private httpUtils : HttpUtils, private webSocketService : WebSocketService) {
+  constructor(private httpUtils : HttpUtils, public dialog: MatDialog) {
     super();
    }
 
   ngOnInit() {
-    
+    this.getWalletInfo();
   }
 
-  registerOnWebsocket(){
-    
-  }
-
-  teste(){
-    let queryString = '?symbol=ADABRL&interval=15m';
-
-    this.httpUtils.publicRequest(MethodType.GET, 'market/candlesticket_data' + queryString).then((response) => {
-      console.log(response);
-    }).catch((error) => {
+  getWalletInfo(){
+    this.httpUtils.get("http://localhost:3000/wallet/balance").then(res => {
+      this.balanceInfo = res;
+      console.log(this.balanceInfo)
+    }).catch(error => {
       console.log(error);
     });
   }
 
-  websocket(){
-    this.webSocketService.send("Testando");
+  getDetails() {
+    const dialogRef = this.dialog.open(WalletOverviewComponent, {data: this.balanceInfo});
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }

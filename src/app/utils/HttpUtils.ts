@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ObjectUtils } from "./ObjectUtils";
 import binance_api from "../../binance_api.json";
+import { StorageUtils, StorageUtilsTypes } from "./StorageUtils";
 
 export enum MethodType{
   GET    = "GET",
@@ -21,7 +22,7 @@ export class HttpUtils {
 
   public getBaseUrl() : string{
     if (this.isTesting)
-      return "http://localhost:3000/";
+      return "http://localhost:3000";
 
     return "AQUI VAI O LINK DE PRODUCAO";
   }
@@ -33,30 +34,103 @@ export class HttpUtils {
     return "AQUI VAI O LINK DE PRODUCAO";
   }
 
-  public publicRequest(method : MethodType, url : string){
-    return new Promise(
-      (resolve, reject) => {
-        let headers = new HttpHeaders();
-        headers = headers.set('Accept', 'application/json');
-        headers = headers.set('Cache-Control', 'no-cache');
-        headers = headers.set('Content-Type', 'application/json');
+  private prepareHeaders(){
+    let headers = new HttpHeaders();
 
-        headers = headers.set('authorization', 'getrich987');
+    headers = headers.set('Accept', 'application/json');
+    headers = headers.set('Cache-Control', 'no-cache');
+    headers = headers.set('Content-Type', 'application/json');
+  
+    // if (!ObjectUtils.isNullOrUndefined(StorageUtils.getData(StorageUtilsTypes.sessionToken))){
+    //   headers = headers.set('authorization', StorageUtils.getData(StorageUtilsTypes.sessionToken));
+    // }
 
-        let sendUrl = this.getBaseUrl() + url;
+    return headers;
+  }
 
-        if (method == MethodType.GET){
-          this.http.get(sendUrl, {headers: headers, observe: 'response'}).toPromise().then((response) => {
-            if (ObjectUtils.isNullOrUndefined(response) || ObjectUtils.isNullOrUndefined(response.body)){
-              return reject({Error: "Unknown error"});  
-            }
+  public get(url: string, object: any = undefined){
+    return new Promise((resolve, reject) => {
+      let headers = this.prepareHeaders();
 
-            return resolve(response.body);
-          }).catch((error) => {
-            return reject(error);
-          });
-        }
+      if (object){
+        url = this.makeQuerystring(url, object);
       }
-    );
+  
+      this.http.get(url, {headers: headers, observe: 'response'}).toPromise().then(response => {
+        return resolve(response.body);
+      }).catch(error => {
+        return reject(error);
+      });
+    });
+  }
+
+  public post(url: string, object: any){
+    return new Promise((resolve, reject) => {
+      let body = '';
+
+      let headers = this.prepareHeaders();
+      
+      if (!ObjectUtils.isNullOrUndefined(object)){
+        body = JSON.stringify(object);
+      }
+  
+      this.http.post(url, body, {headers: headers, observe: 'response'}).toPromise().then(response => {
+        return resolve(response.body);
+      }).catch(error => {
+        return reject(error);
+      });
+    });
+  }
+
+  public put(url: string, object: any){
+    return new Promise((resolve, reject) => {
+      let body = '';
+
+      let headers = this.prepareHeaders();
+      
+      if (!ObjectUtils.isNullOrUndefined(object)){
+        body = JSON.stringify(object);
+      }
+  
+      this.http.put(url, body, {headers: headers, observe: 'response'}).toPromise().then(response => {
+        return resolve(response.body);
+      }).catch(error => {
+        return reject(error);
+      });
+    });
+  }
+
+  public delete(url: string, object: any){
+    return new Promise((resolve, reject) => {
+      let headers = this.prepareHeaders();
+      
+      this.http.delete(url, {headers: headers, observe: 'response'}).toPromise().then(response => {
+        return resolve(response.body);
+      }).catch(error => {
+        return reject(error);
+      });
+    });
+  }
+
+  private makeQuerystring(url: string, object: any){
+    url = this.getBaseUrl() + url;
+
+    if (ObjectUtils.isNullOrUndefined(object)){
+      return url;
+    }
+
+    let count = 0;
+    for (const property in object){
+      count += 1;
+
+      if (count == 1){
+        url += '?' + property + '=' + object[property]
+        continue;
+      }
+
+      url += '&' + property + '=' + object[property];
+    }
+
+    return url;
   }
 }

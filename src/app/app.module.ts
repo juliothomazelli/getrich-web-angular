@@ -40,6 +40,9 @@ import { BarChartComponent } from './charts/bar-chart/bar-chart.component';
 import { AreaChartComponent } from './charts/area-chart/area-chart.component';
 import { ColumnChartComponent } from './charts/column-chart/column-chart.component';
 import { HeatmapChartComponent } from './heatmap-chart/heatmap-chart.component';
+import { MarketService } from './services/Market.service';
+import { WalletOverviewComponent } from './wallet-overview/wallet-overview.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -56,7 +59,8 @@ import { HeatmapChartComponent } from './heatmap-chart/heatmap-chart.component';
     BarChartComponent,
     AreaChartComponent,
     ColumnChartComponent,
-    HeatmapChartComponent
+    HeatmapChartComponent,
+    WalletOverviewComponent
   ],
   imports: [
     BrowserModule,
@@ -79,12 +83,14 @@ import { HeatmapChartComponent } from './heatmap-chart/heatmap-chart.component';
     MatTooltipModule,
     MatGridListModule,
     MatExpansionModule,
+    MatDialogModule,
     NgxChartsModule,
     FormsModule,
     NgApexchartsModule
   ],
   providers: [
     HttpUtils,
+    MarketService,
     WebSocketService
   ],
   bootstrap: [AppComponent]
