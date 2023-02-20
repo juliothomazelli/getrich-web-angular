@@ -6,6 +6,7 @@ import { MarketComponent } from './market/market.component';
 import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
 import { ReportComponent } from './report/report.component';
 import { WalletComponent } from './wallet/wallet.component';
+import { OrderComponent } from './order/order.component';
 
 const childRoutes = [
   {
@@ -19,6 +20,10 @@ const childRoutes = [
   {
     path: 'wallet',
     component: WalletComponent
+  },
+  {
+    path: 'order',
+    component: OrderComponent
   },
   {
     path: 'report',

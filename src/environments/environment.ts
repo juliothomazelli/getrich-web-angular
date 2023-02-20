@@ -2,11 +2,11 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-import { CurrencyTypes, LanguageTypes } from "src/app/utils/EnumUtils";
+import { CurrencyTypes, LanguageTypes } from "src/app/enum/EnumUtils";
 
 export const environment = {
   production: false,
-  language: LanguageTypes.PT,
+  language: LanguageTypes.EN,
   currency: CurrencyTypes.BRL
 };
 

@@ -94,7 +94,7 @@ export class DashboardComponent extends BaseComponent implements OnInit, AfterVi
 //     this.barChart.yreversed  = false;
 //     this.barChart.titleText  = "Mais valorizado"
 
-//     // this.areaChart.series        = this.getAreaChartSeries();
+//     this.areaChart.series        = this.getAreaChartSeries();
 //     this.areaChart.height        = 302;
 //     this.areaChart.dataLabel     = false;
 //     this.areaChart.curve         = "smooth";

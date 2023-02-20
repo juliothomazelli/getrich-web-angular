@@ -11,9 +11,7 @@ export class PieChartComponent implements OnInit {
   public chartOptions: any;
 
   constructor() {
-
   }
-    
 
   ngOnInit(): void {
     this.chartOptions = {
@@ -29,6 +27,7 @@ export class PieChartComponent implements OnInit {
       dataLabels: {
         enabled: this.data.showDataLabel
       },
+      autoUpdateSeries: true,
       fill: {
         type: this.data.gradient ? "gradient" : ""
       },

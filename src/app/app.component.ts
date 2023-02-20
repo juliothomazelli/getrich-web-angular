@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ApexAxisChartSeries } from 'ng-apexcharts';
 import { environment } from 'src/environments/environment';
 import { BaseComponent } from './base/base.component';
-import { CurrencyTypes, LanguageTypes } from './utils/EnumUtils';
+import { CurrencyTypes, LanguageTypes } from './enum/EnumUtils';
 import { WebSocketService } from './websocket/websocket.service';
 
 
@@ -15,7 +15,6 @@ import { WebSocketService } from './websocket/websocket.service';
   viewProviders: [MatExpansionPanel]
 })
 export class AppComponent extends BaseComponent{
-  
 
   constructor(private router : Router, private websocket: WebSocketService){
     super();
@@ -41,6 +40,10 @@ export class AppComponent extends BaseComponent{
 
   configuration(){
     this.router.navigateByUrl("/configuration");
+  }
+
+  order(){
+    this.router.navigateByUrl("/order");
   }
 
   logout(){

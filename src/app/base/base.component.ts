@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import translate from "../../translate.json";
-import { LanguageTypes } from '../utils/EnumUtils';
+import { LanguageTypes } from '../enum/EnumUtils';
 
 @Component({
   selector: 'app-base',

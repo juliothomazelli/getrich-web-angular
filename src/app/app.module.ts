@@ -21,6 +21,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FormsModule } from '@angular/forms';
 import { BaseComponent } from './base/base.component';
@@ -39,10 +41,11 @@ import { CandleChartComponent } from './charts/candle-chart/candle-chart.compone
 import { BarChartComponent } from './charts/bar-chart/bar-chart.component';
 import { AreaChartComponent } from './charts/area-chart/area-chart.component';
 import { ColumnChartComponent } from './charts/column-chart/column-chart.component';
-import { HeatmapChartComponent } from './heatmap-chart/heatmap-chart.component';
+import { HeatmapChartComponent } from './charts/heatmap-chart/heatmap-chart.component';
 import { MarketService } from './services/Market.service';
 import { WalletOverviewComponent } from './wallet-overview/wallet-overview.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { OrderComponent } from './order/order.component';
 
 
 @NgModule({
@@ -60,7 +63,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     AreaChartComponent,
     ColumnChartComponent,
     HeatmapChartComponent,
-    WalletOverviewComponent
+    WalletOverviewComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +83,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatInputModule,
     MatPaginatorModule,
     MatTableModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
     MatListModule,
     MatTooltipModule,
     MatGridListModule,
