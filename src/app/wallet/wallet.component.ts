@@ -5,7 +5,7 @@ import { WebSocketService } from '../websocket/websocket.service';
 import {MatDialog} from '@angular/material/dialog';
 import { WalletOverviewComponent } from '../wallet-overview/wallet-overview.component';
 import { environment } from 'src/environments/environment';
-import { CurrencyTypes, LanguageTypes } from "src/app/enum/EnumUtils";
+import { CurrencyTypes, LanguageTypes } from "src/app/enum/EnumUtils.enum";
 
 @Component({
   selector: 'app-wallet',

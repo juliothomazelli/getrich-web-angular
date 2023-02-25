@@ -18,13 +18,15 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { FormsModule } from '@angular/forms';
+import { MatChipsModule } from '@angular/material/chips';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BaseComponent } from './base/base.component';
 import { MarketComponent } from './market/market.component';
 import { WalletComponent } from './wallet/wallet.component';
@@ -46,6 +48,7 @@ import { MarketService } from './services/Market.service';
 import { WalletOverviewComponent } from './wallet-overview/wallet-overview.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { OrderComponent } from './order/order.component';
+import { OrderService } from './services/Order.service';
 
 
 @NgModule({
@@ -88,15 +91,19 @@ import { OrderComponent } from './order/order.component';
     MatListModule,
     MatTooltipModule,
     MatGridListModule,
+    MatAutocompleteModule,
     MatExpansionModule,
     MatDialogModule,
+    MatChipsModule,
     NgxChartsModule,
+    ReactiveFormsModule,
     FormsModule,
     NgApexchartsModule
   ],
   providers: [
     HttpUtils,
     MarketService,
+    OrderService,
     WebSocketService
   ],
   bootstrap: [AppComponent]

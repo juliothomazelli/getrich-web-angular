@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ApexAxisChartSeries } from 'ng-apexcharts';
 import { environment } from 'src/environments/environment';
 import { BaseComponent } from './base/base.component';
-import { CurrencyTypes, LanguageTypes } from './enum/EnumUtils';
+import { CurrencyTypes, LanguageTypes } from './enum/EnumUtils.enum';
 import { WebSocketService } from './websocket/websocket.service';
 
 
