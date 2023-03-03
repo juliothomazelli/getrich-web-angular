@@ -1,14 +1,69 @@
 <div style="width: 100%;">
   <mat-card style="margin: 1%;">
-    <mat-card-content>Ordens</mat-card-content>
-    <mat-form-field style="width: 100%;">
-      <mat-label >Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+    <div class="container">
+      <h2>Ordens</h2>
+      <div class="example-button-container" style="justify-self: right">
+        <button mat-fab color="warn" aria-label="Example icon button with a home icon">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
+    
+
+    <mat-form-field class="example-form-field" appearance="fill" style="width: 100px;">
+      <mat-label>Id</mat-label>
+      <input matInput type="number" [(ngModel)]="filter.id">
+      <button *ngIf="filter.id" matSuffix mat-icon-button aria-label="Clear" (click)="filter.id = ''">
+        <mat-icon>close</mat-icon>
+      </button>
     </mat-form-field>
 
     <mat-form-field appearance="fill" style="margin: 1%;">
-      <mat-label>Order type</mat-label>
-      <mat-select>
+      <mat-label>Date</mat-label>
+      <mat-date-range-input [rangePicker]="picker" (blur)="fromChange($event)">
+        <input disabled matStartDate placeholder="Start date" [(ngModel)]="filter.from" (ngModelChange)="fromChange($event)">
+        <input disabled matEndDate placeholder="End date" [(ngModel)]="filter.to"  (ngModelChange)="toChange($event)">
+      </mat-date-range-input>
+      <button *ngIf="filter.from || filter.to" matSuffix mat-icon-button aria-label="Clear" (click)="filter.from = ''; filter.to = ''">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker disabled="false" #picker></mat-date-range-picker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="margin: 1%;">
+      <mat-label>Side</mat-label>
+      <mat-select [(value)]="filter.side">
+        <mat-option>-</mat-option>
+        <mat-option value="1">BUY</mat-option>
+        <mat-option value="2">SELL</mat-option>
+      </mat-select>
+      <button *ngIf="filter.side" matSuffix mat-icon-button aria-label="Clear" (click)="filter.side = ''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="margin: 1%;">
+      <mat-label>Status</mat-label>
+      <mat-select [(value)]="filter.status">
+        <mat-option>-</mat-option>
+        <mat-option value="1">CANCELED</mat-option>
+        <mat-option value="2">EXPIRED</mat-option>
+        <mat-option value="3">FILLED</mat-option>
+        <mat-option value="4">NEW</mat-option>
+        <mat-option value="5">PARTIALLY_FILLED</mat-option>
+        <mat-option value="6">PENDING_CANCEL</mat-option>
+        <mat-option value="7">REJECTED</mat-option>
+      </mat-select>
+      <button *ngIf="filter.status" matSuffix mat-icon-button aria-label="Clear" (click)="filter.status = ''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="margin: 1%;">
+      <mat-label>Type</mat-label>
+      <mat-select [(value)]="filter.type">
+        <mat-option>-</mat-option>
         <mat-option value="1">LIMIT</mat-option>
         <mat-option value="2">LIMIT_MAKER</mat-option>
         <mat-option value="3">MARKET</mat-option>
@@ -19,32 +74,17 @@
         <mat-option value="8">TAKE_PROFIT_MARKET</mat-option>
         <mat-option value="9">TRAILING_STOP_MARKET</mat-option>
       </mat-select>
+      <button *ngIf="filter.type" matSuffix mat-icon-button aria-label="Clear" (click)="filter.type = ''">
+        <mat-icon>close</mat-icon>
+      </button>
     </mat-form-field>
 
-    <mat-form-field appearance="fill" style="margin: 1%;">
-      <mat-label>Order side</mat-label>
-      <mat-select>
-        <mat-option value="1">BUY</mat-option>
-        <mat-option value="2">SELL</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill" style="margin: 1%;">
-      <mat-label>Order status</mat-label>
-      <mat-select>
-        <mat-option value="1">CANCELED</mat-option>
-        <mat-option value="2">EXPIRED</mat-option>
-        <mat-option value="3">FILLED</mat-option>
-        <mat-option value="4">NEW</mat-option>
-        <mat-option value="5">PARTIALLY_FILLED</mat-option>
-        <mat-option value="6">PENDING_CANCEL</mat-option>
-        <mat-option value="7">REJECTED</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field class="example-full-width" appearance="fill">
+    <mat-form-field class="example-full-width" appearance="fill" style="margin: 1%;">
       <mat-label>Symbol</mat-label>
-      <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+      <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" [(ngModel)]="filter.symbol">
+      <button *ngIf="filter.symbol" matSuffix mat-icon-button aria-label="Clear" (click)="filter.symbol = ''">
+        <mat-icon>close</mat-icon>
+      </button>
       <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
           {{option}}
@@ -52,19 +92,29 @@
       </mat-autocomplete>
     </mat-form-field>
 
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 100%;">
-      <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnDef">
-        <th mat-header-cell *matHeaderCellDef>
-          {{column.header}}
-        </th>
-        <td mat-cell *matCellDef="let row">
-          {{column.cell(row)}}
-        </td>
-      </ng-container>
+    <button mat-raised-button color="primary" style="margin: 1%;" (click)="loadOrders()">
+      Search 
+      <mat-icon aria-hidden="false" aria-label="Example home icon">search</mat-icon>
+    </button>
+
+    <div>
+      <mat-spinner *ngIf="loadingOrders"></mat-spinner>
+
+      <table *ngIf="!loadingOrders" mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 100%;" matSort (matSortChange)="announceSortChange($event)">
+        <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnDef">
+          <th mat-header-cell *matHeaderCellDef>
+            {{column.header}}
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{column.cell(row)}}
+          </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
     
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
   </mat-card>
   
 </div>

@@ -27,6 +27,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+// import { MatMomentDateModule } from "@angular/material-moment-adapter";
+import { MatNativeDateModule } from '@angular/material/core';
 import { BaseComponent } from './base/base.component';
 import { MarketComponent } from './market/market.component';
 import { WalletComponent } from './wallet/wallet.component';
@@ -95,6 +98,8 @@ import { OrderService } from './services/Order.service';
     MatExpansionModule,
     MatDialogModule,
     MatChipsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     NgxChartsModule,
     ReactiveFormsModule,
     FormsModule,
