@@ -52,6 +52,7 @@ import { WalletOverviewComponent } from './wallet-overview/wallet-overview.compo
 import { MatDialogModule } from '@angular/material/dialog';
 import { OrderComponent } from './order/order.component';
 import { OrderService } from './services/Order.service';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import { OrderService } from './services/Order.service';
     ColumnChartComponent,
     HeatmapChartComponent,
     WalletOverviewComponent,
-    OrderComponent
+    OrderComponent,
+    OrderDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,11 @@
+@import "../../global.scss";
+
+.container{
+  display: flex;
+  justify-content: center;
+  column-gap: 30px;
+}
+
+.container-footer{
+  justify-content: space-between;
+}

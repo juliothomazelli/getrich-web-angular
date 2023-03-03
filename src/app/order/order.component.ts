@@ -9,6 +9,8 @@ import { SymbolType } from '../enum/Symbol.enum';
 import { DateUtils } from '../utils/DateUtils';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import {MatSort, Sort} from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
+import { OrderDetailComponent } from '../order-detail/order-detail.component';
 
 @Component({
   selector: 'app-order',
@@ -68,7 +70,7 @@ export class OrderComponent implements OnInit {
   loadingOrders: boolean = false;
   filter : any = { id: "", type: "", side: "", status: "", symbol: "", from: "", to: "" }
 
-  constructor(private orderService: OrderService, private _liveAnnouncer: LiveAnnouncer) { }
+  constructor(private orderService: OrderService, private _liveAnnouncer: LiveAnnouncer, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.dataSource.sort = this.sort;
@@ -176,6 +178,18 @@ export class OrderComponent implements OnInit {
 
     }).finally(() => {
       this.loadingOrders = false;
+    });
+  }
+
+  openOrderDetail(order: any = undefined){
+    order.Side   = order.Side.toString();
+    order.Status = order.Status.toString();
+    order.Type   = order.Type.toString();
+
+    const dialogRef = this.dialog.open(OrderDetailComponent, {data: {order: order}});
+
+    dialogRef.afterClosed().subscribe(result => {
+
     });
   }
 
