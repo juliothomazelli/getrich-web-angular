@@ -11,6 +11,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import {MatSort, Sort} from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { OrderDetailComponent } from '../order-detail/order-detail.component';
+import { ObjectUtils } from '../utils/ObjectUtils';
 
 @Component({
   selector: 'app-order',
@@ -182,11 +183,13 @@ export class OrderComponent implements OnInit {
   }
 
   openOrderDetail(order: any = undefined){
-    order.Side   = order.Side.toString();
-    order.Status = order.Status.toString();
-    order.Type   = order.Type.toString();
-
-    const dialogRef = this.dialog.open(OrderDetailComponent, {data: {order: order}});
+    if (order){
+      order.Side   = order.Side.toString();
+      order.Status = order.Status.toString();
+      order.Type   = order.Type.toString();
+    }
+    
+    const dialogRef = this.dialog.open(OrderDetailComponent, {data: {order: ObjectUtils.copy(order)}});
 
     dialogRef.afterClosed().subscribe(result => {
 
